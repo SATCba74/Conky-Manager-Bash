@@ -15,7 +15,7 @@ done
 function show_menu() {
     clear
     echo " Bienvenido al Selector de Temas de C O N K Y"
-    echo " Nota: despues de seleccionar su tema seleccione la opcion 'Salir' asi se guardan los cambios"
+    echo " Nota: después de seleccionar su tema, seleccione la opción 'Salir' para guardar los cambios"
     echo " "
     echo " Seleccione un tema:"
     echo
@@ -41,12 +41,11 @@ function show_menu() {
                 autostart_content=$(<"$autostart_file")
             fi
 
-            # Actualizar el contenido del archivo autostart
-            cat > "$autostart_file" << EOF
-#!/bin/bash
-$autostart_content
-(sleep 2 && conky) &
-EOF
+            # Verificar si la línea de inicio de Conky ya está presente
+            if ! grep -q 'conky' "$autostart_file"; then
+                # Agregar la línea de inicio de Conky al archivo autostart
+                echo "(sleep 2 && conky) &" >> "$autostart_file"
+            fi
 
             pkill -x conky  # Matar cualquier instancia existente de Conky
             nohup conky >/dev/null 2>&1 & # Ejecutar Conky en segundo plano con nohup
@@ -60,3 +59,4 @@ EOF
 }
 
 show_menu
+
