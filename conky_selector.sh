@@ -34,16 +34,15 @@ function show_menu() {
             echo " Tema de Conky actualizado a: $selected_theme.conf"
             cp "$theme_dir$selected_theme.conf" "$HOME/.conkyrc"
 
-            # Leer el archivo autostart existente
+            # Actualizar el contenido del archivo autostart
             local autostart_file="$HOME/.config/openbox/autostart"
-            local autostart_content
-            if [[ -f $autostart_file ]]; then
-                autostart_content=$(<"$autostart_file")
-            fi
 
-            # Verificar si la línea de inicio de Conky ya está presente
-            if ! grep -q 'conky' "$autostart_file"; then
-                # Agregar la línea de inicio de Conky al archivo autostart
+            # Verificar si la línea de inicio de Conky ya existe en el archivo autostart
+            if ! grep -q "# Inicio de Conky" "$autostart_file"; then
+                # Eliminar líneas existentes que contengan 'conky'
+                sed -i '/conky/d' "$autostart_file"
+                # Agregar comentario y la línea de inicio de Conky al archivo autostart
+                echo "# Inicio de Conky" >> "$autostart_file"
                 echo "(sleep 2 && conky) &" >> "$autostart_file"
             fi
 
@@ -59,4 +58,3 @@ function show_menu() {
 }
 
 show_menu
-
