@@ -1,4 +1,20 @@
 #!/bin/bash
+#
+# Este programa es software libre: puedes redistribuirlo y/o modificar
+# bajo los términos de la Licencia Pública General GNU publicada por
+# la Free Software Foundation, ya sea la versión 3 de la Licencia, o
+# (a su elección) cualquier versión posterior.
+#
+# Este programa se distribuye con la esperanza de que sea útil,
+# pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de
+# COMERCIABILIDAD o IDONEIDAD PARA UN FIN DETERMINADO. Vea la
+# Licencia Pública General GNU para más detalles.
+#
+# Licencia Pública General GNU consulte <http://www.gnu.org/licenses/>.
+#
+# Ejecutar con la orden bash conky_selector.sh
+###################################################################
+#!/bin/bash
 
 # Ruta de la carpeta de temas de Conky
 theme_dir="$HOME/.config/conky/"
